@@ -2,9 +2,14 @@ import cuid from 'cuid';
 import React, { useState } from 'react';
 import { Segment, Header, Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createEvent, updateEvent } from '../eventActions';
 
-const EventForm = ({createEvent, selectedEvent, updateEvent}) => {
+const EventForm = ({match, history}) => {
     
+    const dispatch = useDispatch();
+    const selectedEvent = useSelector(state => state.event.events.find(e => e.id === match.params.id));
+
     const initialValues = selectedEvent ?? {
         title: '',
         category: '',
@@ -26,18 +31,20 @@ const EventForm = ({createEvent, selectedEvent, updateEvent}) => {
         e.preventDefault();
 
         if (selectedEvent)
-            updateEvent({
+            dispatch(updateEvent({
                 ...selectedEvent,
                 ...values                
-            });
+            }));
         else 
-            createEvent({
+            dispatch(createEvent({
                 ...values,
                 id: cuid(), 
                 hostedBy: 'Kelly', 
                 attendees: [],
                 hostPhotoURL: '/assets/user.png'
-            });
+            }));
+        
+            history.push('/events');
     }
 
     return (

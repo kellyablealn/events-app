@@ -16,11 +16,14 @@ const eventImageTextStyle = {
 };
 
 
-const EventDetailedHeader = () => {
+const EventDetailedHeader = ({event}) => {
     return (
         <Segment.Group>
             <Segment basic attached="top" style={{padding: '0'}}>
-                <Image src={`/assets/categoryImages/drinks.jpg`} fluid style={eventImageStyle}/>
+                <Image 
+                    src={`/assets/categoryImages/${event.category}.jpg`} 
+                    fluid 
+                    style={eventImageStyle}/>
 
                 <Segment basic style={eventImageTextStyle}>
                     <Item.Group>
@@ -28,12 +31,12 @@ const EventDetailedHeader = () => {
                             <Item.Content>
                                 <Header
                                     size="huge"
-                                    content='Event Title'
+                                    content={event.title}
                                     style={{color: 'white'}}
                                 />
-                                <p>Event Date</p>
+                                <p>{event.date}</p>
                                 <p>
-                                    Hosted by <strong>Bob</strong>
+                                    Hosted by <strong>{event.hostedBy}</strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -45,7 +48,7 @@ const EventDetailedHeader = () => {
                 <Button>Cancel My Place</Button>
                 <Button color="teal">JOIN THIS EVENT</Button>
 
-                <Button as={Link} to={'/manage'} color="orange" floated="right">
+                <Button as={Link} to={`/manage/${event.id}`} color="orange" floated="right">
                     Manage Event
                 </Button>
             </Segment>
