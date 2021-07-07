@@ -7,6 +7,7 @@ import EventDashboard from '../../features/events/eventDashboard/EventDashboard'
 import EventDetailedPage from '../../features/events/eventDetailed/EventDetailedPage';
 import EventForm from '../../features/events/eventForm/EventForm';
 import NavBar from '../../features/nav/NavBar';
+import ModalManager from '../common/modals/ModalManager';
 
 function App() {
     
@@ -14,6 +15,7 @@ function App() {
 
     return (
         <>
+            <ModalManager />
             <Route exact path='/' component={HomePage} />
             <Route path={'/(.+)'} render={() => (
                 <>
