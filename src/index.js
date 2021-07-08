@@ -6,12 +6,16 @@ import { configureStore } from './app/store/configureStore';
 import ScrollToTop from './app/layout/ScrollToTop';
 
 import 'semantic-ui-css/semantic.min.css';
+import 'react-toastify/dist/ReactToastify.min.css';
+import 'react-calendar/dist/Calendar.css';
 import './app/layout/styles.css';
 import App from './app/layout/App';
 
 import reportWebVitals from './reportWebVitals';
+import { loadEvents } from './features/events/eventActions';
 
 const store = configureStore();
+store.dispatch(loadEvents());
 
 const rootEl = document.getElementById('root');
 
