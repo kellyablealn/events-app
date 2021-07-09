@@ -35,3 +35,10 @@ export const loadEvents = () => {
         }
     }
 }
+
+export const listenToEvents = (events) => {
+    return {
+        type: FETCH_EVENTS,
+        payload: events
+    }
+}
