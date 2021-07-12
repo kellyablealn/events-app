@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LoginForm from '../../../features/auth/LoginForm';
+import RegisterForm from '../../../features/auth/RegisterForm';
 
 const ModalManager = () => {
     
     const modalLookup = {
-        LoginForm
+        LoginForm,
+        RegisterForm
     };
     const currentModal = useSelector(state => state.modals);
     let renderedModal;

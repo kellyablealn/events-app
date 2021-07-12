@@ -10,10 +10,16 @@ import EventForm from '../../features/events/eventForm/EventForm';
 import NavBar from '../../features/nav/NavBar';
 import ModalManager from '../common/modals/ModalManager';
 import ErrorComponent from '../common/errors/ErrorComponent';
+import AccountPage from '../../features/auth/AccountPage';
+import { useSelector } from 'react-redux';
+import LoadingComponent from './LoadingComponent';
 
 function App() {
     
     const {key} = useLocation();
+    const {initialized} = useSelector(state => state.async);
+
+    if (!initialized) return <LoadingComponent content='Loading app...'/>
 
     return (
         <>
@@ -27,6 +33,7 @@ function App() {
                         <Route exact path='/events' component={EventDashboard} />
                         <Route exact path='/events/:id' component={EventDetailedPage} />
                         <Route exact path={['/createEvent', '/manage/:id']} component={EventForm} key={key}/>                
+                        <Route exact path='/account' component={AccountPage}/>
                         <Route exact path='/error' component={ErrorComponent}/>                
                     </Container>
                 </>
