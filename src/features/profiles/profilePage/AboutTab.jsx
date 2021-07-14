@@ -11,7 +11,7 @@ const AboutTab = ({profile, isCurrentUser}) => {
             <Grid>
                 <Grid.Column width={16}>
                     <Header floated='left' icon='user' content={`About ${profile.displayName}`} />
-                    {isCurrentUser && (<Button onClick={() => setEditMode(true)} floated='right' basic content={editMode ? 'Cancel' : 'Edit'}/>)}
+                    {isCurrentUser && (<Button onClick={() => setEditMode(!editMode)} floated='right' basic content={editMode ? 'Cancel' : 'Edit'}/>)}
                 </Grid.Column>
                 <Grid.Column width={16}>
                     {editMode 
