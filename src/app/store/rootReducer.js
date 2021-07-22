@@ -4,8 +4,10 @@ import modalReducer from '../common/modals/modalReducer';
 import authReducer from '../../features/auth/authReducer';
 import asyncReducer from '../../app/async/asyncReducer';
 import profileReducer from '../../features/profiles/profileReducer';
+import { connectRouter } from 'connected-react-router';
 
-const rootReducer = combineReducers({
+const rootReducer = (history) => combineReducers({
+    router: connectRouter(history),
     event: eventReducer,
     modals: modalReducer,
     auth: authReducer,

@@ -14,6 +14,7 @@ import AccountPage from '../../features/auth/AccountPage';
 import { useSelector } from 'react-redux';
 import LoadingComponent from './LoadingComponent';
 import ProfilePage from '../../features/profiles/profilePage/ProfilePage';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
     
@@ -33,9 +34,23 @@ function App() {
                     <Container className='main'>
                         <Route exact path='/events' component={EventDashboard} />
                         <Route exact path='/events/:id' component={EventDetailedPage} />
-                        <Route exact path={['/createEvent', '/manage/:id']} component={EventForm} key={key}/>                
-                        <Route exact path='/account' component={AccountPage}/>
-                        <Route exact path='/profile/:id' component={ProfilePage}/>
+                        
+                        <PrivateRoute 
+                            exact 
+                            path={['/createEvent', '/manage/:id']} 
+                            component={EventForm} 
+                            key={key}
+                        />
+                        <PrivateRoute 
+                            exact 
+                            path='/account' 
+                            component={AccountPage}
+                        />
+                        <PrivateRoute 
+                            exact 
+                            path='/profile/:id' 
+                            component={ProfilePage}
+                        />
                         <Route exact path='/error' component={ErrorComponent}/>                
                     </Container>
                 </>

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { configureStore } from './app/store/configureStore';
+import { configureStore, history } from './app/store/configureStore';
 import ScrollToTop from './app/layout/ScrollToTop';
+import { ConnectedRouter } from 'connected-react-router';
 
 import 'semantic-ui-css/semantic.min.css';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -20,10 +20,10 @@ const rootEl = document.getElementById('root');
 function render() {
     ReactDOM.render(
         <Provider store={store}>
-            <BrowserRouter>
+            <ConnectedRouter history={history}>
                 <ScrollToTop />
                 <App />
-            </BrowserRouter>
+            </ConnectedRouter>
         </Provider>, 
         rootEl
     );

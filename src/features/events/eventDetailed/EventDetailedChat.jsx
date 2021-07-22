@@ -12,6 +12,7 @@ import { createDataTree } from '../../../app/common/util/util';
 
 const EventDetailedChat = ({eventId}) => {
     const dispatch = useDispatch();
+    const { authenticated } = useSelector(state => state.auth);
     const {comments} = useSelector(state => state.event);
     const [showReplyForm, setShowReplyForm] = useState({open: false, commentId: null});
 
@@ -39,10 +40,11 @@ const EventDetailedChat = ({eventId}) => {
                 color="teal"
                 style={{border: 'none'}}
             >
-                <Header>Chat about this event</Header>
+                <Header>{authenticated ? 'Chat about this event' : 'Sign in to view and comment'}</Header>
             </Segment>
 
-            <Segment attached>
+            { authenticated && (
+                <Segment attached>
                 <EventDetailedChatForm eventId={eventId} parentId={0} closeForm={setShowReplyForm}/>
                 <Comment.Group>
                     {createDataTree(comments).map(comment => (
@@ -97,6 +99,7 @@ const EventDetailedChat = ({eventId}) => {
                     ))}                    
                 </Comment.Group>                
             </Segment>
+            )}            
         </>
     )
 }
